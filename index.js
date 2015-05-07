@@ -49,7 +49,7 @@ app.get('/player/:id', function(req, response) {
     var dataObject = {};
     _.each(keys, function(key, keyIndex) {
       if(key === null) return
-      dataObject[key] = values[keyIndex]
+      dataObject[key] = values[keyIndex].replace('.','')
     })
     response.set('Content-type', 'text/plain')
     response.send(JSON.stringify(dataObject))
