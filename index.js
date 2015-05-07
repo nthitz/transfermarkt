@@ -23,10 +23,8 @@ app.get('/player/:id', function(req, response) {
       "User-Agent":  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36"
     }
   }, function(err, resp, body) {
-    console.log(body)
     var $ = cheerio.load(body)
     var tds = $('tfoot tr td')
-    console.log(tds)
     var values = $('tfoot tr td').map(function() {
       return $(this).text()
     }).get();
@@ -52,7 +50,7 @@ app.get('/player/:id', function(req, response) {
       dataObject[key] = values[keyIndex].replace('.','')
     })
     response.set('Content-type', 'text/plain')
-    response.send(JSON.stringify(dataObject))
+    response.send(JSON.stringify(dataObject, null, "  "))
 
   })
 })
